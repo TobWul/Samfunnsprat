@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home";
+import VueAnalytics from "vue-analytics";
 import IssueDetail from "./views/IssueDetail";
 import PageNotFound from "./views/PageNotFound";
 
