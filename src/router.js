@@ -7,7 +7,7 @@ import PageNotFound from "./views/PageNotFound";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes: [
     {
@@ -31,3 +31,5 @@ Vue.use(VueAnalytics, {
   id: "UA-147736726-1",
   router
 });
+
+export default router;
