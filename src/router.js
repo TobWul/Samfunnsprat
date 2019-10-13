@@ -8,7 +8,6 @@ import PageNotFound from "./views/PageNotFound";
 Vue.use(Router);
 
 const router = new Router({
-  mode: "history",
   routes: [
     {
       path: "/",
