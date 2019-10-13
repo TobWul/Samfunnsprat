@@ -18,7 +18,6 @@ import Card from "../components/Card";
 import TheContainer from "../components/TheContainer";
 
 import { mapGetters } from "vuex";
-import { page } from "vue-analytics";
 
 export default {
   name: "Home",
@@ -28,11 +27,6 @@ export default {
   },
   computed: {
     ...mapGetters(["issues"])
-  },
-  methods: {
-    track() {
-      page("/");
-    }
   }
 };
 </script>

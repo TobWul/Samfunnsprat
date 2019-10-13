@@ -26,7 +26,6 @@
 <script>
 import TheContainer from "../components/TheContainer";
 import { Tweet } from "vue-tweet-embed";
-import { page } from "vue-analytics";
 
 export default {
   name: "issuedetail",
@@ -43,11 +42,6 @@ export default {
     const issueId = parseInt(this.$route.params.issue_id);
     const issue = this.$store.getters.getIssueById(issueId);
     this.issue = issue;
-  },
-  methods: {
-    track() {
-      page("/" + issue.title);
-    }
   }
 };
 </script>

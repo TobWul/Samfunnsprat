@@ -25,3 +25,8 @@ export default new Router({
     }
   ]
 });
+
+Vue.use(VueAnalytics, {
+  id: "UA-147736726-1",
+  router
+});
