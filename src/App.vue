@@ -8,6 +8,13 @@
 <script>
 import TheNavigation from "./components/TheNavigation";
 
+import Vue from "vue";
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: "UA-147736726-1"
+});
+
 export default {
   name: "App",
   components: {
