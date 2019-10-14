@@ -18,10 +18,6 @@ const router = new Router({
       path: "/sak/:issue_id",
       name: "issue",
       component: IssueDetail
-    },
-    {
-      path: "/*",
-      component: PageNotFound
     }
   ]
 });
