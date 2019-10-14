@@ -9,8 +9,8 @@
     <br />
     <h3>Hvordan</h3>
     <p>{{ issue.hvordan }}</p>
-    <form name="feedback" data-netlify="true" data-netlify-honeypot="bot-field" method="post">
-      <input type="hidden" name="form-name" value="feedback" />
+    <form name="ask-question" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="ask-question" />
       <div class="input-field">
         <label>
           Hvordan ville du gitt tilbakemelding?
