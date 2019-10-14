@@ -8,6 +8,7 @@ import PageNotFound from "./views/PageNotFound";
 Vue.use(Router);
 
 const router = new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -18,6 +19,11 @@ const router = new Router({
       path: "/sak/:issue_id",
       name: "issue",
       component: IssueDetail
+    },
+    {
+      path: "/*",
+      name: "pageNotFound",
+      component: PageNotFound
     }
   ]
 });
