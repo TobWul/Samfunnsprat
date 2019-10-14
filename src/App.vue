@@ -20,7 +20,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../src/scss/css-reset", "../src/scss/_typography", "../src/scss/global";
+@import "../src/scss/css-reset", "../src/scss/_typography", "../src/scss/global",
+  "../src/scss/input";
 body {
   background-color: color(primary, 100);
 }

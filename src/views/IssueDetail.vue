@@ -9,29 +9,35 @@
     <br />
     <h3>Hvordan</h3>
     <p>{{ issue.hvordan }}</p>
-    <Tweet id="1182584398459355138"></Tweet>
-    <iframe
-      src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FStudenttinget%2Fposts%2F10162370772740607&width=500"
-      width="500"
-      height="626"
-      style="border:none;overflow:hidden"
-      scrolling="no"
-      frameborder="0"
-      allowtransparency="true"
-      allow="encrypted-media"
-    ></iframe>
+    <form name="contact" netlify>
+      <div class="input-field">
+        <label>
+          Hvordan ville du gitt tilbakemelding?
+          <textarea type="text" name="tilbakemelding"></textarea>
+        </label>
+      </div>
+      <p>
+        <label>
+          Hva ville du lest mer om?
+          <textarea type="text" name="mer"></textarea>
+        </label>
+      </p>
+      <p>
+        <Button class="button" :type="'submit'">Send inn</Button>
+      </p>
+    </form>
   </the-container>
 </template>
 
 <script>
 import TheContainer from "../components/TheContainer";
-import { Tweet } from "vue-tweet-embed";
+import Button from "../components/Button";
 
 export default {
   name: "issuedetail",
   components: {
     TheContainer,
-    Tweet
+    Button
   },
   data: function() {
     return {
