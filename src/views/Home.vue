@@ -1,5 +1,10 @@
 <template>
   <the-container class="home">
+    <router-link
+      v-if="!user"
+      :to="'/login'"
+      style="text-align: right; display: block; color: #000"
+    >Logg inn</router-link>
     <h1>svarig</h1>
     <br />
     <p>Under behandling</p>
@@ -55,6 +60,9 @@ export default {
     },
     completedIssues: function() {
       return this.issues.filter(issue => !issue.pending);
+    },
+    user: () => {
+      return firebase.auth().currentUser;
     }
   },
   methods: {

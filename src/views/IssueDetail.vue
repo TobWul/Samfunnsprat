@@ -31,7 +31,12 @@
           <strong>{{downvotes}}</strong>
         </div>
       </div>
-      <div class="voting" v-if="currentIssue.pending">
+      <router-link
+        :to="'/login'"
+        class="voting button"
+        v-if="currentIssue.pending && !user"
+      >Logg inn for å stemme</router-link>
+      <div class="voting" v-else-if="currentIssue.pending">
         <button
           :class="{selected: hasVoted && isUpvote}"
           @click="vote({upvote: true, 'id': currentIssue.id})"
@@ -190,6 +195,16 @@ header {
   margin-bottom: 4rem;
   background: color(gray, 200);
   padding: 5% 5% 2rem;
+
+  .button {
+    background: color(primary, 500);
+    color: white;
+    border-radius: 4px;
+    max-width: 150px;
+    padding: 1rem;
+    text-align: center;
+    line-height: 1.2em;
+  }
 
   .voting {
     button {

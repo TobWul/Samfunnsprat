@@ -37,7 +37,7 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
-        .signInWithPopup(provider)
+        .signInWithRedirect(provider)
         .then(() => {
           self.$router.push('/');
         })
@@ -48,7 +48,7 @@ export default {
       const provider = new firebase.auth.FacebookAuthProvider();
       firebase
         .auth()
-        .signInWithPopup(provider)
+        .signInWithRedirect(provider)
         .then(() => {
           self.$router.push('/');
         })

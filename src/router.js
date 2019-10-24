@@ -1,41 +1,41 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Home from "./views/Home";
-import VueAnalytics from "vue-analytics";
-import IssueDetail from "./views/IssueDetail";
-import Login from "./views/Login";
-import PageNotFound from "./views/PageNotFound";
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from './views/Home';
+import VueAnalytics from 'vue-analytics';
+import IssueDetail from './views/IssueDetail';
+import Login from './views/Login';
+import PageNotFound from './views/PageNotFound';
 
 Vue.use(Router);
 
 const router = new Router({
-  mode: "history",
+  mode: 'history',
   routes: [
     {
-      path: "/",
-      name: "home",
+      path: '/',
+      name: 'home',
       component: Home
     },
     {
-      path: "/sak/:issue_id",
-      name: "issue",
+      path: '/sak/:issue_id',
+      name: 'issue',
       component: IssueDetail
     },
     {
-      path: "/login",
-      name: "login",
+      path: '/login',
+      name: 'login',
       component: Login
     },
     {
-      path: "/*",
-      name: "pageNotFound",
+      path: '/*',
+      name: 'pageNotFound',
       component: PageNotFound
     }
   ]
 });
 
 Vue.use(VueAnalytics, {
-  id: "UA-147736726-1",
+  id: 'UA-147736726-1',
   router
 });
 
