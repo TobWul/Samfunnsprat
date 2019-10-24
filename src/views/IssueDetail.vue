@@ -53,7 +53,7 @@
       <div class="voting" v-else>
         <p class="caption">Flertallet er</p>
         <span
-          v-if="(currentIssue.approved && upvotes > downvotes) || (!currentIssue.approved && upvotes < downvotes)"
+          v-if="(currentIssue.approved && upvotes >= downvotes) || (!currentIssue.approved && upvotes < downvotes)"
         >Enig</span>
         <span class="disagree" v-else>Uenig</span>
       </div>
@@ -67,6 +67,16 @@
       <br />
       <h3>Hvordan</h3>
       <p>{{ currentIssue.how }}</p>
+      <br />
+      <br />
+      <hr />Si din mening til ansvarlig i denne saken:
+      <br />
+      <br />
+      <a
+        :href="'mailto:oleanda@ntnu.no?subject=Sak fra svarig: ' + currentIssue.title"
+        class="button"
+        target="blank"
+      >Send e-post til Ole Andreas Alsås</a>
     </the-container>
   </div>
 </template>
@@ -120,9 +130,10 @@ export default {
     ...mapActions(['getIssueById', 'vote']),
     getDate: issueDate => {
       issueDate = issueDate.toDate();
-      return `${issueDate.getDate()}.${('0' + (issueDate.getMonth() + 1)).slice(
-        -2
-      )}.${issueDate.getFullYear()}`;
+      return `${('0' + issueDate.getDate()).slice(-2)}.${(
+        '0' +
+        (issueDate.getMonth() + 1)
+      ).slice(-2)}.${issueDate.getFullYear()}`;
     }
   },
   created: function() {
@@ -189,22 +200,22 @@ header {
   }
 }
 
+.button {
+  background: color(primary, 500);
+  color: white;
+  border-radius: 4px;
+  max-width: 150px;
+  padding: 1rem;
+  text-align: center;
+  line-height: 1.2em;
+}
+
 .votes {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
   background: color(gray, 200);
   padding: 5% 5% 2rem;
-
-  .button {
-    background: color(primary, 500);
-    color: white;
-    border-radius: 4px;
-    max-width: 150px;
-    padding: 1rem;
-    text-align: center;
-    line-height: 1.2em;
-  }
 
   .voting {
     button {

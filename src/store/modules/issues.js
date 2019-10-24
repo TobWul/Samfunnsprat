@@ -26,17 +26,20 @@ const mutations = {
 };
 const actions = {
   getIssues: ({ commit }) => {
-    issuesRef.get().then(querySnapshot => {
-      commit(
-        'setIssues',
-        querySnapshot.docs.map(doc => {
-          return {
-            ...doc.data(),
-            id: doc.id
-          };
-        })
-      );
-    });
+    issuesRef
+      .orderBy('date', 'desc')
+      .get()
+      .then(querySnapshot => {
+        commit(
+          'setIssues',
+          querySnapshot.docs.map(doc => {
+            return {
+              ...doc.data(),
+              id: doc.id
+            };
+          })
+        );
+      });
   },
   getIssueById: ({ state, commit }, id) => {
     commit('setCurrentIssue', {});

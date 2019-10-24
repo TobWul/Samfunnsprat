@@ -69,9 +69,10 @@ export default {
     ...mapActions(['getIssues']),
     getDate: issueDate => {
       issueDate = issueDate.toDate();
-      return `${issueDate.getDate()}.${('0' + (issueDate.getMonth() + 1)).slice(
-        -2
-      )}.${issueDate.getFullYear()}`;
+      return `${('0' + issueDate.getDate()).slice(-2)}.${(
+        '0' +
+        (issueDate.getMonth() + 1)
+      ).slice(-2)}.${issueDate.getFullYear()}`;
     }
   },
   created() {
