@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Button",
+  name: 'Button',
   props: {
     onClick: {
       type: Function,
@@ -15,7 +15,7 @@ export default {
     buttonType: {
       type: String,
       required: false,
-      default: ""
+      default: ''
     }
   }
 };
@@ -23,13 +23,23 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  padding: 1rem 2rem;
-  background: color(primary, 600);
-  color: white;
-  border: none;
+  border: 0;
   -webkit-appearance: none;
   border-radius: $border-radius;
-  font-size: 1.6rem;
+  background: color(primary, 500);
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  // text-transform: uppercase;
+  letter-spacing: 0.02%;
+  outline: 0;
   cursor: pointer;
+  transition: background 200ms ease-in-out;
+  will-change: background;
+  color: white;
+  letter-spacing: 0.05em;
+
+  &:hover {
+    background: darken(color(primary, 500), 10%);
+  }
 }
 </style>

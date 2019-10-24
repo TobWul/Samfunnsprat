@@ -1,5 +1,5 @@
 html {
-    font-family: "PT Sans", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 62.5%;
 }
 
@@ -14,13 +14,13 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "PT Serif", serif;
     font-style: normal;
     font-weight: normal;
     line-height: 1.2em;
 }
 
 h1 {
+    font-family: "Fjord One", serif;
     font-size: 4.5rem;
 }
 
@@ -60,4 +60,10 @@ ol {
 
 ul li {
     list-style-type: disc;
+}
+
+.caption {
+    font-size: 1.2rem;
+    line-height: 1.6em;
+    margin: 0;
 }

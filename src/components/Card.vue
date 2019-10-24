@@ -6,17 +6,20 @@
 
 <script>
 export default {
-  name: "card"
+  name: 'card'
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
+  position: relative;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(14, 66, 66, 0.1);
   text-decoration: none;
-  color: $text-color;
-  box-shadow: $shadow;
-  background: #fff;
-  padding: 1rem 2rem;
-  margin-bottom: 1rem;
+  color: color(primary, 600);
+  width: 100%;
+  display: block;
+  margin-bottom: 2rem;
 }
 </style>

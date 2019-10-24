@@ -6,7 +6,7 @@
 input:not([type="submit"]),
 textarea {
     background: #fff;
-    box-shadow: 0 0 0 2px color(grays, 300);
+    box-shadow: 0 0 0 2px color(gray, 300);
     border: 0;
     border-radius: $border-radius;
     padding: 1rem;
@@ -16,11 +16,11 @@ textarea {
     width: 100%;
 
     &:hover {
-        box-shadow: 0 0 0 2px color(grays, 600);
+        box-shadow: 0 0 0 2px color(gray, 600);
     }
 
     &:focus {
-        box-shadow: 0 0 0 2px color(grays, 700);
+        box-shadow: 0 0 0 2px color(gray, 700);
     }
 
     &::placeholder {
