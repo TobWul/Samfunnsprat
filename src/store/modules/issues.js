@@ -58,18 +58,26 @@ const actions = {
         }
       });
   },
-  vote: ({ getters }, payload) => {
+  vote: ({ commit, getters }, payload) => {
     voteRef
       .where('user', '==', getters.user.uid)
       .where('issue', '==', payload.id)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.docs.length === 0) {
-          voteRef.doc().set({
+          const newVote = {
             upvote: payload.upvote,
             user: getters.user.uid,
             issue: payload.id
-          });
+          };
+          voteRef
+            .doc()
+            .set(newVote)
+            .then(() => {
+              let issue = getters.currentIssue;
+              issue.votes.push(newVote);
+              commit('setCurrentIssue', issue);
+            });
         }
       });
   }

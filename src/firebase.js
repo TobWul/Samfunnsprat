@@ -3,7 +3,7 @@ import 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCwMoVOyEL4Fi_PbtB6-1q2IcZrgKupRlU',
+  apiKey: 'AIzaSyBrgl3r9haDKs0puzr7-JGffvpTos2OUKg',
   authDomain: 'folketinget-a44e5.firebaseapp.com',
   databaseURL: 'https://folketinget-a44e5.firebaseio.com',
   projectId: 'folketinget-a44e5',
