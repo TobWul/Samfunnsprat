@@ -2,6 +2,11 @@
   <div>
     <header>
       <back />
+      <router-link v-if="user" :to="'/login'" class="login">
+        <Icon :name="'user'" :size="18" />
+        {{ user.displayName }}
+      </router-link>
+      <router-link v-if="!user" :to="'/login'" class="login">Logg inn</router-link>
       <h3>{{ currentIssue.title }}</h3>
       <p v-if="!currentIssue.pending">{{getDate(currentIssue.date)}}</p>
       <div v-if="currentIssue.pending">
@@ -14,30 +19,40 @@
         <Icon :name="'close'" />Nedstemt
       </div>
     </header>
-      <div class="votes">
-        <div class="result">
-          <p class="caption">Folkets mening</p>
-          <div>
-            For
-            <strong>{{upvotes}}</strong>
-          </div>
-          <div>
-            Mot
-            <strong>{{downvotes}}</strong>
-          </div>
+    <div class="votes">
+      <div class="result">
+        <p class="caption">Folkets mening</p>
+        <div>
+          For
+          <strong>{{upvotes}}</strong>
         </div>
-        <div class="voting" v-if="currentIssue.pending">
-          <button @click="vote({upvote: true, 'id': currentIssue.id})"><Icon :name="'upvote'" :size="24" /></button>
-          <button @click="vote({upvote: false, 'id': currentIssue.id})"><Icon :name="'downvote'" :size="24"/></button>
-        </div>
-        <div class="voting" v-else>
-          <p class="caption">Flertallet er</p>
-          <span
-            v-if="(currentIssue.approved && upvotes > downvotes) || (!currentIssue.approved && upvotes < downvotes)"
-          >Enig</span>
-          <span class="disagree" v-else>Uenig</span>
+        <div>
+          Mot
+          <strong>{{downvotes}}</strong>
         </div>
       </div>
+      <div class="voting" v-if="currentIssue.pending">
+        <button
+          :class="{selected: hasVoted && isUpvote}"
+          @click="vote({upvote: true, 'id': currentIssue.id})"
+        >
+          <Icon :name="'upvote'" :size="24" />
+        </button>
+        <button
+          :class="{selected: hasVoted && !isUpvote}"
+          @click="vote({upvote: false, 'id': currentIssue.id})"
+        >
+          <Icon :name="'downvote'" :size="24" />
+        </button>
+      </div>
+      <div class="voting" v-else>
+        <p class="caption">Flertallet er</p>
+        <span
+          v-if="(currentIssue.approved && upvotes > downvotes) || (!currentIssue.approved && upvotes < downvotes)"
+        >Enig</span>
+        <span class="disagree" v-else>Uenig</span>
+      </div>
+    </div>
     <the-container>
       <h3>Hva</h3>
       <p>{{ currentIssue.what }}</p>
@@ -57,6 +72,7 @@ import Button from '../components/Button';
 import Back from '../components/Back';
 import Icon from '../components/Icon';
 import { mapGetters, mapActions } from 'vuex';
+import firebase from 'firebase';
 
 export default {
   name: 'issuedetail',
@@ -68,7 +84,8 @@ export default {
   },
   data: function() {
     return {
-      issue: {}
+      issue: {},
+      isUpvote: false
     };
   },
   computed: {
@@ -78,6 +95,18 @@ export default {
     },
     downvotes: function() {
       return this.currentIssue.votes.filter(vote => !vote.upvote).length;
+    },
+    user: () => {
+      return firebase.auth().currentUser;
+    },
+    hasVoted: function() {
+      if (this.user) {
+        const votes = this.currentIssue.votes.filter(
+          vote => this.user.uid === vote.user
+        );
+        this.isUpvote = votes[0].upvote;
+        return votes.length === 1;
+      }
     }
   },
   methods: {
@@ -128,6 +157,19 @@ header {
   }
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 2rem;
+  right: 5%;
+  color: white;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
 .result {
   div {
     text-transform: uppercase;
@@ -160,6 +202,10 @@ header {
       algin-items: center;
       justify-content: center;
       color: #fff;
+
+      &.selected {
+        background: color(primary, 800);
+      }
     }
     span {
       font-weight: bold;

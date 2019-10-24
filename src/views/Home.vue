@@ -11,23 +11,23 @@
     >
       <card>
         <h4>{{issue.title}}</h4>
-        <Icon v-if="issue.pending" :name="'pending'" :class="{ pending: issue.pending }"/>
-        <Icon v-else-if="issue.approved" :name="'vedtatt'" :class="{ vedtatt: issue.approved }"/>
-        <Icon v-else-if="!issue.approved" :name="'close'"/>
+        <Icon v-if="issue.pending" :name="'pending'" :class="{ pending: issue.pending }" />
+        <Icon v-else-if="issue.approved" :name="'vedtatt'" :class="{ vedtatt: issue.approved }" />
+        <Icon v-else-if="!issue.approved" :name="'close'" />
       </card>
     </router-link>
     <p>Ferdigbehandlede saker</p>
     <router-link
       v-for="(issue, index) in completedIssues"
       :to="{ name: 'issue', params: { issue_id: issue.id }}"
-      :key="index"
+      :key="index + pendingIssues.length"
     >
       <card>
         <h4>{{issue.title}}</h4>
         <p>{{ getDate(issue.date) }}</p>
-        <Icon v-if="issue.pending" :name="'pending'" :class="{ pending: issue.pending }"/>
-        <Icon v-else-if="issue.approved" :name="'vedtatt'" :class="{ vedtatt: issue.approved }"/>
-        <Icon v-else-if="!issue.approved" :name="'close'"/>
+        <Icon v-if="issue.pending" :name="'pending'" :class="{ pending: issue.pending }" />
+        <Icon v-else-if="issue.approved" :name="'vedtatt'" :class="{ vedtatt: issue.approved }" />
+        <Icon v-else-if="!issue.approved" :name="'close'" />
       </card>
     </router-link>
   </the-container>
@@ -51,18 +51,17 @@ export default {
   },
   data: function() {
     return {
-      user: firebase.auth().currentUser
+      user: this.firebase.auth().currentUser
     };
   },
   computed: {
     ...mapGetters(['issues']),
     pendingIssues: function() {
-      return this.issues.filter((issue) => issue.pending);
+      return this.issues.filter(issue => issue.pending);
     },
     completedIssues: function() {
-      return this.issues.filter((issue) => !issue.pending);
+      return this.issues.filter(issue => !issue.pending);
     }
-    
   },
   methods: {
     ...mapActions(['getIssues']),
@@ -101,6 +100,5 @@ h1 {
       stroke: color(success, 400);
     }
   }
-
 }
 </style>

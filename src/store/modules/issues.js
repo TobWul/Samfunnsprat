@@ -86,12 +86,10 @@ const actions = {
             .update({ upvote: payload.upvote })
             .then(() => {
               let issue = getters.currentIssue;
-              console.log(newVote);
               issue.votes = issue.votes.map(vote => {
                 if (vote.user === newVote.user) return newVote;
                 else return vote;
               });
-              console.log(issue.votes);
               commit('setCurrentIssue', issue);
             });
         }

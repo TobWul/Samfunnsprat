@@ -1,18 +1,34 @@
 <template>
+<the-container>
+  <back />
   <div id="login">
-    <Button :onClick="loginGoogle">Logg inn med Google</Button>
-    <Button :onClick="loginFacebook">Logg inn med Facebook</Button>
-    <Button :onClick="logout">Logg ut</Button>
+    <template v-if="!user">
+      <Button :onClick="loginGoogle">Logg inn med Google</Button>
+      <br><br>
+      <Button :onClick="loginFacebook">Logg inn med Facebook</Button>
+    </template>
+    <Button v-else :onClick="logout">Logg ut</Button>
   </div>
+  </the-container>
 </template>
 
 <script>
 import firebase from 'firebase';
 import Button from '../components/Button';
+import TheContainer from '../components/TheContainer';
+import Back from '../components/Back';
+
 export default {
   name: 'login',
   components: {
-    Button
+    Button,
+    TheContainer,
+    Back
+  },
+  computed: {
+    user: () => {
+      return firebase.auth().currentUser;
+    }
   },
   methods: {
     loginSuccess: result => {
@@ -53,12 +69,19 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace('login');
+          this.$router.replace('home');
         });
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.container {
+  text-align: center;
+}
+a {
+  color: black;
+  margin-bottom: 20%;
+}
 </style>
