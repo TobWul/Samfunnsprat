@@ -39,6 +39,7 @@ const actions = {
     });
   },
   getIssueById: ({ state, commit }, id) => {
+    commit('setCurrentIssue', {});
     issuesRef
       .doc(id)
       .get()
@@ -64,18 +65,33 @@ const actions = {
       .where('issue', '==', payload.id)
       .get()
       .then(querySnapshot => {
+        const newVote = {
+          upvote: payload.upvote,
+          user: getters.user.uid,
+          issue: payload.id
+        };
         if (querySnapshot.docs.length === 0) {
-          const newVote = {
-            upvote: payload.upvote,
-            user: getters.user.uid,
-            issue: payload.id
-          };
           voteRef
             .doc()
             .set(newVote)
             .then(() => {
               let issue = getters.currentIssue;
               issue.votes.push(newVote);
+              commit('setCurrentIssue', issue);
+            });
+        } else if (querySnapshot.docs[0].data().upvote !== payload.upvote) {
+          const voteId = querySnapshot.docs[0].id;
+          voteRef
+            .doc(voteId)
+            .update({ upvote: payload.upvote })
+            .then(() => {
+              let issue = getters.currentIssue;
+              console.log(newVote);
+              issue.votes = issue.votes.map(vote => {
+                if (vote.user === newVote.user) return newVote;
+                else return vote;
+              });
+              console.log(issue.votes);
               commit('setCurrentIssue', issue);
             });
         }

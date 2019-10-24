@@ -3,9 +3,9 @@
     <header>
       <back />
       <h3>{{ currentIssue.title }}</h3>
-      <p>{{getDate(currentIssue.date)}}</p>
+      <p v-if="!currentIssue.pending">{{getDate(currentIssue.date)}}</p>
       <div v-if="currentIssue.pending">
-        <Icon :name="'vedtatt'" />Under behandling
+        <Icon :name="'pending'" />Under behandling
       </div>
       <div v-else-if="currentIssue.approved" class="vedtatt">
         <Icon :name="'vedtatt'" />Vedtatt
@@ -14,7 +14,6 @@
         <Icon :name="'close'" />Nedstemt
       </div>
     </header>
-    <the-container>
       <div class="votes">
         <div class="result">
           <p class="caption">Folkets mening</p>
@@ -39,6 +38,7 @@
           <span class="disagree" v-else>Uenig</span>
         </div>
       </div>
+    <the-container>
       <h3>Hva</h3>
       <p>{{ currentIssue.what }}</p>
       <br />
@@ -144,6 +144,9 @@ header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
+  background: color(gray, 200);
+  padding: 5% 5% 2rem;
+
   .voting {
     button {
       background-color: color(primary, 400);
