@@ -1,6 +1,5 @@
 <template>
   <the-container class="home">
-    {{ user && user.displayName }}
     <h1>svarig</h1>
     <br />
     <p>Under behandling</p>
@@ -48,11 +47,6 @@ export default {
     Card,
     TheContainer,
     Icon
-  },
-  data: function() {
-    return {
-      user: this.firebase.auth().currentUser
-    };
   },
   computed: {
     ...mapGetters(['issues']),

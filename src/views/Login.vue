@@ -1,14 +1,15 @@
 <template>
-<the-container>
-  <back />
-  <div id="login">
-    <template v-if="!user">
-      <Button :onClick="loginGoogle">Logg inn med Google</Button>
-      <br><br>
-      <Button :onClick="loginFacebook">Logg inn med Facebook</Button>
-    </template>
-    <Button v-else :onClick="logout">Logg ut</Button>
-  </div>
+  <the-container>
+    <back />
+    <div id="login">
+      <template v-if="!user">
+        <Button :onClick="loginGoogle">Logg inn med Google</Button>
+        <br />
+        <br />
+        <Button :onClick="loginFacebook">Logg inn med Facebook</Button>
+      </template>
+      <Button v-else :onClick="logout">Logg ut</Button>
+    </div>
   </the-container>
 </template>
 
@@ -31,45 +32,34 @@ export default {
     }
   },
   methods: {
-    loginSuccess: result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      this.$router.replace('home');
-    },
-    loginError: error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
-    },
-    loginGoogle: () => {
+    loginGoogle: function() {
+      const self = this;
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(loginSuccess(result))
-        .catch(loginError(error));
+        .then(() => {
+          self.$router.push('/');
+        })
+        .catch(error => console.log(error));
     },
-    loginFacebook: () => {
+    loginFacebook: function() {
+      const self = this;
       const provider = new firebase.auth.FacebookAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(loginSuccess(result))
-        .catch(loginError(error));
+        .then(() => {
+          self.$router.push('/');
+        })
+        .catch(error => console.log(error));
     },
-    logout: () => {
+    logout: function() {
       firebase
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace('home');
+          this.$router.push('/');
         });
     }
   }

@@ -104,8 +104,10 @@ export default {
         const votes = this.currentIssue.votes.filter(
           vote => this.user.uid === vote.user
         );
-        this.isUpvote = votes[0].upvote;
+        this.isUpvote = votes.length > 0 ? votes[0].upvote : false;
         return votes.length === 1;
+      } else {
+        return false;
       }
     }
   },
