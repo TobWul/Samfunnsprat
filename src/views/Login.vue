@@ -6,7 +6,7 @@
         <Button :onClick="loginGoogle">Logg inn med Google</Button>
         <br />
         <br />
-        <Button :onClick="loginFacebook">Logg inn med Facebook</Button>
+        <!-- <Button :onClick="loginFacebook">Logg inn med Facebook</Button> -->
       </template>
       <Button v-else :onClick="logout">Logg ut</Button>
     </div>

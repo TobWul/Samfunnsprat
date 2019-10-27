@@ -76,7 +76,7 @@
         :href="'mailto:oleanda@ntnu.no?subject=Sak fra svarig: ' + currentIssue.title"
         class="button"
         target="blank"
-      >Send e-post til Ole Andreas Alsås</a>
+      >Send e-post til instituttleder</a>
     </the-container>
   </div>
 </template>
