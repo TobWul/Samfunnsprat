@@ -9,8 +9,7 @@ export default {
   name: 'Button',
   props: {
     onClick: {
-      type: Function,
-      required: true
+      type: Function
     },
     buttonType: {
       type: String,
@@ -25,6 +24,7 @@ export default {
 button {
   border: 0;
   -webkit-appearance: none;
+  appearance: none;
   border-radius: $border-radius;
   background: color(primary, 500);
   padding: 1rem 2rem;

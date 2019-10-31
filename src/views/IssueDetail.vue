@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Feedback :show="showFeedback" :issueId="currentIssue.id" @close="showFeedback=false" />
     <header>
       <back />
       <router-link v-if="user" :to="'/login'" class="login">
@@ -39,13 +40,13 @@
       <div class="voting" v-else-if="currentIssue.pending">
         <button
           :class="{selected: hasVoted && isUpvote}"
-          @click="vote({upvote: true, 'id': currentIssue.id})"
+          @click="thumb({upvote: true, 'id': currentIssue.id})"
         >
           <Icon :name="'upvote'" :size="24" />
         </button>
         <button
           :class="{selected: hasVoted && !isUpvote}"
-          @click="vote({upvote: false, 'id': currentIssue.id})"
+          @click="thumb({upvote: false, 'id': currentIssue.id})"
         >
           <Icon :name="'downvote'" :size="24" />
         </button>
@@ -86,6 +87,7 @@ import TheContainer from '../components/TheContainer';
 import Button from '../components/Button';
 import Back from '../components/Back';
 import Icon from '../components/Icon';
+import Feedback from '../components/Feedback';
 import { mapGetters, mapActions } from 'vuex';
 import firebase from 'firebase';
 
@@ -95,12 +97,14 @@ export default {
     TheContainer,
     Button,
     Back,
-    Icon
+    Icon,
+    Feedback
   },
   data: function() {
     return {
       issue: {},
-      isUpvote: false
+      isUpvote: false,
+      showFeedback: false
     };
   },
   computed: {
@@ -134,6 +138,10 @@ export default {
         '0' +
         (issueDate.getMonth() + 1)
       ).slice(-2)}.${issueDate.getFullYear()}`;
+    },
+    thumb: function(payload) {
+      this.vote(payload);
+      this.showFeedback = true;
     }
   },
   created: function() {

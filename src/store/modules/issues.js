@@ -63,14 +63,15 @@ const actions = {
       });
   },
   vote: ({ commit, getters }, payload) => {
+    const userId = firebase.auth().currentUser.uid;
     voteRef
-      .where('user', '==', getters.user.uid)
+      .where('user', '==', userId)
       .where('issue', '==', payload.id)
       .get()
       .then(querySnapshot => {
         const newVote = {
           upvote: payload.upvote,
-          user: getters.user.uid,
+          user: userId,
           issue: payload.id
         };
         if (querySnapshot.docs.length === 0) {
@@ -96,6 +97,13 @@ const actions = {
               commit('setCurrentIssue', issue);
             });
         }
+      });
+  },
+  sendFeedback: ({ commit }, payload) => {
+    db.collection('issues')
+      .doc(payload.issueId)
+      .update({
+        feedback: firebase.firestore.FieldValue.arrayUnion(payload.feedback)
       });
   }
 };

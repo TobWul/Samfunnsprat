@@ -1,0 +1,21 @@
+.button {
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: $border-radius;
+    background: color(primary, 500);
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    // text-transform: uppercase;
+    letter-spacing: 0.02%;
+    outline: 0;
+    cursor: pointer;
+    transition: background 200ms ease-in-out;
+    will-change: background;
+    color: white;
+    letter-spacing: 0.05em;
+
+    &:hover {
+        background: darken(color(primary, 500), 10%);
+    }
+}

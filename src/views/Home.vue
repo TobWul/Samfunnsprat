@@ -5,7 +5,7 @@
       :to="'/login'"
       style="text-align: right; display: block; color: #000"
     >Logg inn</router-link>
-    <h1>svarig</h1>
+    <h1>borgersvar</h1>
     <br />
     <p>Under behandling</p>
     <router-link
@@ -54,19 +54,16 @@ export default {
     Icon
   },
   computed: {
-    ...mapGetters(['issues']),
+    ...mapGetters(['issues', 'user']),
     pendingIssues: function() {
       return this.issues.filter(issue => issue.pending);
     },
     completedIssues: function() {
       return this.issues.filter(issue => !issue.pending);
-    },
-    user: () => {
-      return firebase.auth().currentUser;
     }
   },
   methods: {
-    ...mapActions(['getIssues']),
+    ...mapActions(['getIssues', 'signUpEmail', 'signOffEmail']),
     getDate: issueDate => {
       issueDate = issueDate.toDate();
       return `${('0' + issueDate.getDate()).slice(-2)}.${(
@@ -85,6 +82,7 @@ export default {
 h1 {
   text-align: center;
   color: color(primary, 600);
+  font-size: 3.2rem;
 }
 .card {
   padding-right: 6rem;
