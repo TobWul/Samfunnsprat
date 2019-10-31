@@ -5,7 +5,7 @@
       :to="'/login'"
       style="text-align: right; display: block; color: #000"
     >Logg inn</router-link>
-    <h1>borgersvar</h1>
+    <h1>borgersak</h1>
     <br />
     <p>Under behandling</p>
     <router-link
