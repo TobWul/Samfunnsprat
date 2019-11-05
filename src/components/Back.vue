@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="'/'">
+  <router-link :to="'/'" :style="{'color': color}">
     <Icon :name="'back'" />Tilbake
   </router-link>
 </template>
@@ -8,6 +8,12 @@
 import Icon from './Icon';
 export default {
   name: 'Back',
+  props: {
+    color: {
+      type: String,
+      default: '#fff'
+    }
+  },
   components: {
     Icon
   }

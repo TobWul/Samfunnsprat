@@ -4,6 +4,14 @@ import firebase from 'firebase';
 const issuesRef = db.collection('issues');
 const voteRef = db.collection('votes');
 
+const isPublisher = roles => {
+  return roles.includes('publisher');
+};
+
+const isEditor = roles => {
+  return roles.inclues('editor');
+};
+
 const state = {
   issues: [],
   currentIssue: {}
@@ -61,6 +69,27 @@ const actions = {
             });
         }
       });
+  },
+  newIssue: ({ commit, state }, issue) => {
+    if (state.getters.isPublisher) {
+      const newIssue = {
+        title: issue.title,
+        what: issue.what,
+        why: issue.why,
+        how: issue.how,
+        date: issue.date,
+        approved: issue.approved,
+        pending: issue.pending
+      };
+      issuesRef
+        .doc(issue.title)
+        .set(newIssue)
+        .then(() => {
+          commit('setIssues', [...state.issues, newIssue]);
+        });
+    } else {
+      console.error('No permission');
+    }
   },
   vote: ({ commit, getters }, payload) => {
     const userId = firebase.auth().currentUser.uid;

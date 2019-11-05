@@ -3,7 +3,7 @@
     max-width: 400px;
 }
 
-input:not([type="submit"]),
+input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 textarea {
     background: #fff;
     box-shadow: 0 0 0 2px color(gray, 300);
@@ -12,6 +12,7 @@ textarea {
     padding: 1rem;
     outline: 0;
     font-size: 1.6rem;
+    font-family: $sans-serif;
     transition: box-shadow 100ms ease-in-out;
     width: 100%;
     -webkit-appearance: none;

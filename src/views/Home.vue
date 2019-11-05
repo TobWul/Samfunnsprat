@@ -1,5 +1,6 @@
 <template>
   <the-container class="home">
+    <router-link v-if="isPublisher" :to="'/ny-sak'" class="icon-link"><Icon :name="'new_issue'"/>Ny sak</router-link>
     <router-link
       v-if="!user"
       :to="'/login'"
@@ -54,7 +55,7 @@ export default {
     Icon
   },
   computed: {
-    ...mapGetters(['issues', 'user']),
+    ...mapGetters(['issues', 'user', 'isPublisher']),
     pendingIssues: function() {
       return this.issues.filter(issue => issue.pending);
     },

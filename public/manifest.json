@@ -1,6 +1,6 @@
 {
-  "name": "Folketinget – Få oversikt over politikken",
-  "short_name": "Folketinget",
+  "name": "Borgersak – Få oversikt over politikken",
+  "short_name": "Borgersak",
   "icons": [{
       "src": "./img/icons/android-chrome-192x192.png",
       "sizes": "192x192",

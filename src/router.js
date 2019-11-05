@@ -3,8 +3,10 @@ import Router from 'vue-router';
 import Home from './views/Home';
 import VueAnalytics from 'vue-analytics';
 import IssueDetail from './views/IssueDetail';
+import NewIssue from './views/NewIssue';
 import Login from './views/Login';
 import PageNotFound from './views/PageNotFound';
+import store from './store/index';
 
 Vue.use(Router);
 
@@ -20,6 +22,14 @@ const router = new Router({
       path: '/sak/:issue_id',
       name: 'issue',
       component: IssueDetail
+    },
+    {
+      path: '/ny-sak',
+      name: 'newIssue',
+      component: NewIssue,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isPublisher) next();
+      }
     },
     {
       path: '/login',

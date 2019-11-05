@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 import db from '../../firebase';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 const state = {
   user: {}
@@ -9,6 +8,9 @@ const state = {
 const getters = {
   user: state => {
     return state.user;
+  },
+  isPublisher: state => {
+    return state.user.role ? state.user.role.includes('publisher') : false;
   }
 };
 
