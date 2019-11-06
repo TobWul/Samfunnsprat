@@ -10,7 +10,12 @@ const getters = {
     return state.user;
   },
   isPublisher: state => {
-    return state.user.role ? state.user.role.includes('publisher') : false;
+    if (state.user) {
+      if (state.user.role) {
+        return state.user.role.includes('publisher');
+      }
+    }
+    return false;
   }
 };
 
