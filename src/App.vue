@@ -22,6 +22,7 @@ export default {
 @import '../src/scss/css-reset', '../src/scss/_typography', '../src/scss/global',
   '../src/scss/input', '../src/scss/button';
 body {
-  background-color: color(gray, 100);
+  background-color: $background-color;
+  transition: background 200ms ease-in-out;
 }
 </style>

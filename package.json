@@ -9,6 +9,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "chroma-js": "^2.1.0",
+    "colorthief": "^2.3.0",
     "core-js": "^2.6.5",
     "firebase": "^7.2.1",
     "prerender-spa-plugin": "^3.4.0",

@@ -26,7 +26,7 @@ button {
   -webkit-appearance: none;
   appearance: none;
   border-radius: $border-radius;
-  background: color(primary, 500);
+  background: var(--primary-500);
   padding: 1rem 2rem;
   font-size: 1.8rem;
   // text-transform: uppercase;
@@ -39,7 +39,7 @@ button {
   letter-spacing: 0.05em;
 
   &:hover {
-    background: darken(color(primary, 500), 10%);
+    background: var(--primary-600);
   }
 }
 </style>

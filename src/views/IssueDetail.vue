@@ -153,8 +153,11 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  background: color(primary, 500);
+  background: var(--primary-600);
   color: white;
+  max-width: $max-width;
+  margin: 0 auto;
+  position: relative;
 
   a {
     margin-bottom: 2rem;
@@ -199,7 +202,7 @@ header {
 .result {
   div {
     text-transform: uppercase;
-    color: color(primary, 700);
+    color: var(--primary-700);
     display: inline-block;
     margin-right: 1.5rem;
     span {
@@ -209,7 +212,7 @@ header {
 }
 
 .button {
-  background: color(primary, 500);
+  background: var(--primary-500);
   color: white;
   border-radius: 4px;
   max-width: 150px;
@@ -221,13 +224,14 @@ header {
 .votes {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4rem;
-  background: color(gray, 200);
+  background: var(--primary-50);
   padding: 5% 5% 2rem;
+  max-width: $max-width;
+  margin: 0 auto;
 
   .voting {
     button {
-      background-color: color(primary, 400);
+      background-color: var(--primary-400);
       outline: 0;
       border: 0;
       border-radius: $border-radius;
@@ -240,7 +244,7 @@ header {
       color: #fff;
 
       &.selected {
-        background: color(primary, 800);
+        background: var(--primary-800);
       }
     }
     span {
@@ -256,6 +260,8 @@ header {
 }
 
 .container {
+  padding-top: 4rem;
+  background-color: white;
   p {
     max-width: 70ch;
   }

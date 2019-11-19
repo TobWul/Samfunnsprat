@@ -7,7 +7,8 @@
 <style lang="scss" scoped>
 .container {
   padding: 5% 5% 20%;
-  max-width: 1200px;
+  position: relative;
+  max-width: $max-width;
   margin: 0 auto;
 }
 </style>

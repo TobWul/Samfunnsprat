@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: "TheNavigation"
+  name: 'TheNavigation'
 };
 </script>
 
 <style lang="scss" scoped>
 #nav {
   a {
-    color: color(primary, 800);
+    color: var(--primary-800);
   }
 }
 </style>>

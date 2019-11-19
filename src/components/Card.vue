@@ -17,7 +17,7 @@ export default {
   background-color: white;
   box-shadow: 0px 2px 4px rgba(14, 66, 66, 0.1);
   text-decoration: none;
-  color: color(primary, 600);
+  color: $text-color;
   width: 100%;
   display: block;
   margin-bottom: 2rem;

@@ -53,9 +53,10 @@ $colors: (primary: (100: #D4F6E4,
         800: #172230,
         900: #0E1728));
 
-$text-color: color(primary, 800);
+$text-color: var(--secondary-800);
 $shadow: 0px 4px 4px rgba(30, 32, 107, 0.12);
-$background-color: color(primary, 100);
+$background-color: var(--primary-50);
 $border-radius: 4px;
 $sans-serif: "IBM Plex Sans",
 sans-serif;
+$max-width: 1200px;

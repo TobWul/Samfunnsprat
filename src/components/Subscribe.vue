@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .subscribe {
-  background: color(primary, 500);
+  background: var(--primary-500);
   color: color(gray, 100);
   position: fixed;
   bottom: 0;
@@ -49,7 +49,6 @@ export default {
   svg {
     .rect {
       fill: white !important;
-      // fill: color(primary, 500);
     }
   }
 }

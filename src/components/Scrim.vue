@@ -19,7 +19,6 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(14, 66, 66);
   opacity: 0.5;
 }
 .fade-enter-active,
