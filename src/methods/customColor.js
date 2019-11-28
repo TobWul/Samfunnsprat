@@ -73,14 +73,18 @@ const createColorPalettes = palette => {
 
 const setCustomColor = img => {
   let palette;
-  if (img.complete) {
-    palette = getEmblemColors(img);
-    createColorPalettes(palette);
-  } else {
-    img.addEventListener('load', () => {
+  if (img) {
+    if (img.complete) {
       palette = getEmblemColors(img);
       createColorPalettes(palette);
-    });
+    } else {
+      img.addEventListener('load', () => {
+        palette = getEmblemColors(img);
+        createColorPalettes(palette);
+      });
+    }
+  } else {
+    createColorPalettes(['#1D5D52', '#ECBD5E']);
   }
 };
 
